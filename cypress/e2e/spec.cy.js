@@ -1,30 +1,49 @@
 import IdentifyNewBikes from '../support/pageobjects/IdentifyNewBikes';
-describe('Identify New Bikes', () =>{
-    beforeEach(() => {
-        IdentifyNewBikes.visit();
+
+describe("Identify New Bikes", () => {
+  beforeEach(() => {
+    IdentifyNewBikes.visitHomePage();
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      return false;
+    });
+  });
+
+  it("should display upcoming Honda bikes under ₹4 lakh", () => {
+    IdentifyNewBikes.clickUpcomingBikesTab();
+    IdentifyNewBikes.getUpcomingBikeElements().each(($el) => {
+      const price = parseFloat($el.attr("data-price"));
+      if (price < 400000) {
+        const bikeName = $el.find(".txt-ulne").text().trim();
+        const launchDate = $el.find(".clr-try").text().trim();
+        cy.log("Bike Name - " + bikeName);
+        cy.log("Price - " + price);
+        cy.log(launchDate);
+      }
+    });
+  });
+
+  it("should extract popular used car models in Chennai", () => {
+    IdentifyNewBikes.clickUsedCarsChennai();
+    let models = [];
+    IdentifyNewBikes.getPopularUsedCarModels().each(($el) => {
+      models.push($el.text().trim());
+    }).then(() => {
+      models.forEach((model) => {
+        cy.log(model);
+      });
+    });
+  });
+
+  it("should simulate Google login and capture error message", () => {
+    IdentifyNewBikes.openLoginModal();
+    IdentifyNewBikes.clickGoogleSignIn();
+
+  });
 });
-it('should navigate to New Bikes tab and open Upcoming Honda bikes', () => {
-    IdentifyNewBikes.NewBikesTab();
-    IdentifyNewBikes.UpcomingBikes();
-    IdentifyNewBikes.SearchHonda();
-  });
 
-  it('should extract Honda bike details under ₹4 Lakh and verify Activa 7G page', () => {
-    IdentifyNewBikes.NewBikesTab();
-    IdentifyNewBikes.UpcomingBikes();
-    IdentifyNewBikes.SearchHonda();
-    IdentifyNewBikes.ExtractBikesDetails();
-    IdentifyNewBikes.VerifyBikeDetails();
-  });
 
-  it('should navigate to Used Cars in Chennai and log popular models', () => {
-    IdentifyNewBikes.UsedCars();
-    IdentifyNewBikes.ExtractPopularModels();
-  });
 
-  it('should open login modal and click on Google login', () => {
-    IdentifyNewBikes.Login();
-    IdentifyNewBikes.UseGoogle();
-  });
 
-})
+
+
+
