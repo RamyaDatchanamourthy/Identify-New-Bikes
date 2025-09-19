@@ -16,10 +16,10 @@ describe("Identify New Bikes", () => {
       if (price < 400000) {
         const bikeName = $el.find(".txt-ulne").text().trim();
         const launchDate = $el.find(".clr-try").text().trim();
-        cy.log("Bike Name - " + bikeName);
-        cy.log("Price - " + price);
+        cy.log("Bike Name : " + bikeName);
+        cy.log("Price : " + price);
         cy.log(launchDate);
-        cy.wait(1000)
+        cy.wait(2000)
       }
     });
   });
