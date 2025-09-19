@@ -19,7 +19,7 @@ describe("Identify New Bikes", () => {
         cy.log("Bike Name : " + bikeName);
         cy.log("Price : " + price);
         cy.log(launchDate);
-        cy.wait(2000)
+        cy.wait(3000)
       }
     });
   });
