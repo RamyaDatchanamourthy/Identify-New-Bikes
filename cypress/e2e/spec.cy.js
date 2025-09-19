@@ -25,6 +25,7 @@ describe("Identify New Bikes", () => {
   });
 
   it("should extract popular used car models in Chennai", () => {
+    IdentifyNewBikes.visitHomePage()
     IdentifyNewBikes.clickUsedCarsChennai();
     cy.wait(1000)
     let models = [];
