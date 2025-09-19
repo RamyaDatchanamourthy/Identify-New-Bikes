@@ -9,6 +9,7 @@ describe("Identify New Bikes", () => {
   });
 
   it("should display upcoming Honda bikes under ₹4 lakh", () => {
+    cy.wait(1000)
     IdentifyNewBikes.clickUpcomingBikesTab();
     IdentifyNewBikes.getUpcomingBikeElements().each(($el) => {
       const price = parseFloat($el.attr("data-price"));
@@ -18,12 +19,14 @@ describe("Identify New Bikes", () => {
         cy.log("Bike Name - " + bikeName);
         cy.log("Price - " + price);
         cy.log(launchDate);
+        cy.wait(1000)
       }
     });
   });
 
   it("should extract popular used car models in Chennai", () => {
     IdentifyNewBikes.clickUsedCarsChennai();
+    cy.wait(1000)
     let models = [];
     IdentifyNewBikes.getPopularUsedCarModels().each(($el) => {
       models.push($el.text().trim());

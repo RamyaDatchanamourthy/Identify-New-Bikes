@@ -4,8 +4,11 @@ class IdentifyNewBikes {
     }
 
     clickUpcomingBikesTab() {
+        cy.wait(5000)
         cy.get(".upcoming-bike-tab").click();
+        cy.wait(1000)
         cy.get("[title='All Upcoming Bikes']").click();
+        cy.wait(1000)
         cy.get("[title='upcoming Honda bikes']").click();
     }
 
