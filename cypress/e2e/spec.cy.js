@@ -9,7 +9,7 @@ describe("Identify New Bikes", () => {
   });
 
   it("should display upcoming Honda bikes under ₹4 lakh", () => {
-    cy.wait(1000)
+    cy.wait(2000)
     IdentifyNewBikes.clickUpcomingBikesTab();
     IdentifyNewBikes.getUpcomingBikeElements().each(($el) => {
       const price = parseFloat($el.attr("data-price"));
