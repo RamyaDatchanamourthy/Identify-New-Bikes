@@ -10,6 +10,7 @@ class IdentifyNewBikes {
         cy.get("[title='All Upcoming Bikes']").click();
         cy.wait(1000)
         cy.get("[title='upcoming Honda bikes']").click();
+        cy.wait(1000)
     }
 
     getUpcomingBikeElements() {
