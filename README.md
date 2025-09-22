@@ -1,45 +1,56 @@
-# Hackathon Idea: Web Automation Suite
+Hackathon Idea: Identify New Bikes
 
-## Problem Statement
+Problem Statement
+1. Homepage Accessibility Check
+Launch a browser and navigate to zigwheels.com to verify:
+The homepage loads correctly
+The site is accessible for automation
 
-### 1. Identify Upcoming Honda Bikes
+2. Navigation Flow Validation
+Interact with the UI by:
+Clicking on “New Bikes”
+Selecting “Upcoming”
+
+3. Identify Upcoming Honda Bikes
 Extract and display upcoming bike details in India with the following filters:
-- Manufacturer: Honda
-- Price: Less than ₹4,00,000
+Manufacturer: Honda
+Price: Less than ₹4,00,000
 
 Details to extract:
-- Bike Name
-- Expected Price
-- Expected Launch Date
+Bike Name
+Expected Price
+Expected Launch Date
 
-Suggested source: [zigwheels.com](https://www.zigwheels.com)
+Suggested source: zigwheels.com
 
-### 2. Popular Used Cars in Chennai
-Extract a list of popular used car models available in Chennai.
+4. Input Validation for Seller Form
+Verify that entering an invalid mobile number in the "View Seller Details" form:
+Triggers the correct error message
+Prevents the “Get OTP” button from being enabled
 
-Details to extract:
-- Car Model Names
+5. Popular Used Cars in Chennai
+Navigate to the used cars section for Chennai and extract:
+Names of popular used car models
 
-Suggested source: [zigwheels.com](https://www.zigwheels.com)
+Suggested source: zigwheels.com
 
-### 3. Login Error Capture
-Simulate a login attempt using Google authentication with invalid credentials.
+6. Upcoming Cars Page Verification
+Navigate to the “Upcoming Cars” tab and verify:
+The correct page URL is loaded
 
-Expected outcome:
-- Capture and display the error message shown on failed login
+7. Price Sorting Validation
+Apply the "Low to High" price filter on the Upcoming Cars page and validate:
+That displayed car prices are sorted in ascending order
 
-Suggested source: [zigwheels.com](https://www.zigwheels.com)
+Automation Scope:
+Launching and navigating browser sessions
+Handling windows and frames
+Filling and validating form inputs
+Capturing warning and error messages
+Extracting menu items and dynamic content
+Navigating through multi-level UI flows
+Verifying sorting and filtering logic
 
-## Automation Scope
-
-- Handling windows and frames
-- Filling simple forms
-- Capturing warning and error messages
-- Extracting menu items from frames and storing them in collections
-- Navigating back to the home page
-
-## Tech Stack
-
-- Automation Framework: Cypress
-- Language: JavaScript
-
+Tech Stack:
+Automation Framework: Cypress
+Language: JavaScript
