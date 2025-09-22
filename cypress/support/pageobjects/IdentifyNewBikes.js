@@ -40,6 +40,26 @@ class IdentifyNewBikes {
     getUpcomingElements() {
         return cy.get("#modelList").find("li");    // selecting all list elements
     }
+
+    getUsedCarsChennai() {
+        return cy.get("#usedCars").find(".Chennai").scrollIntoView()
+    }
+
+    extractAndLogPopularUsedCarModels() {
+        this.getPopularUsedCarModels().then(($elements) => {
+            const models = [];
+            $elements.each((index, el) => {
+                models.push(Cypress.$(el).text().trim());
+            });
+            models.forEach((model) => {
+                cy.log(model);
+            });
+        });
+    }
+
+    getPopularUsedCarModels() {
+        return cy.get(".popularModels").find("li");
+    }
     
     getURL() {
         return cy.url()

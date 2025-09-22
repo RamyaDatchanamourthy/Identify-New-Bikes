@@ -28,6 +28,13 @@ it("To verify that homepage loads correctly", () => {
     cy.go(-2) // back to the home page
     IdentifyNewBikes.getURL().should("eq", 'https://www.zigwheels.com/')
   });
+
+  it("should extract popular used car models in Chennai", () => {
+    IdentifyNewBikes.getUsedCarsChennai().should("be.visible").click();
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/used-car/Chennai")
+    IdentifyNewBikes.extractAndLogPopularUsedCarModels()
+  });
+ 
  
   
 })
