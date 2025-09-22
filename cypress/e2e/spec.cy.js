@@ -15,5 +15,19 @@ it("To verify that homepage loads correctly", () => {
     cy.wait(2000)
  
   })
+
+    it("should display upcoming Honda bikes under ₹4 lakh", () => {
+    IdentifyNewBikes.clickUpcomingBikesTab();
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/upcoming-bikes")
+ 
+    IdentifyNewBikes.filterHondaBikes().scrollIntoView().click()
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/upcoming-honda-bikes")
+ 
+    IdentifyNewBikes.filterAndLogHondaBikesUnder4Lakh();
+ 
+    cy.go(-2) // back to the home page
+    IdentifyNewBikes.getURL().should("eq", 'https://www.zigwheels.com/')
+  });
+ 
   
 })
