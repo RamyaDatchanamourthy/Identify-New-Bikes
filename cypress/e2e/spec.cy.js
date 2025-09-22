@@ -8,5 +8,12 @@ describe("Identify New Bikes", () => {
       return false;
     });
   });
-
+it("To verify that homepage loads correctly", () => {
+    IdentifyNewBikes.getURL().should('eq', 'https://www.zigwheels.com/')
+    IdentifyNewBikes.getBanner().should("be.visible")
+    cy.scrollTo("bottom")
+    cy.wait(2000)
+ 
+  })
+  
 })
