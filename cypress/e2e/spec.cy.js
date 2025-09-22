@@ -59,6 +59,7 @@ describe("Identify New Bikes", () => {
     IdentifyNewBikes.getSellerDetailsButton().first().click()
     IdentifyNewBikes.getInputElement().type(formdata.mobilenumber1)
     IdentifyNewBikes.getErrorMessage().should("eq", "Please enter valid mobile number")
+    IdentifyNewBikes.getOTPButton().should("have.class", "btndisabled")
 
 
   })
