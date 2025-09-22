@@ -34,6 +34,14 @@ it("To verify that homepage loads correctly", () => {
     IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/used-car/Chennai")
     IdentifyNewBikes.extractAndLogPopularUsedCarModels()
   });
+
+   it("Verify sorting of all upcoming cars by price (Low to High)", () => {
+    IdentifyNewBikes.clickUpcomingCarsTab()
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/upcoming-cars")
+    IdentifyNewBikes.getDropdown().select("price-asc")
+    IdentifyNewBikes.verifyUpcomingCarsSortedByPriceAsc();
+ 
+  })
  
  
   

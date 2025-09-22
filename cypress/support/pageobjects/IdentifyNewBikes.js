@@ -60,6 +60,31 @@ class IdentifyNewBikes {
     getPopularUsedCarModels() {
         return cy.get(".popularModels").find("li");
     }
+    clickUpcomingCarsTab() {
+        cy.get(".upcoming-car-tab").scrollIntoView().click();
+        cy.get("[title='All Upcoming Cars']").click({ force: true })
+ 
+    }
+    getDropdown() {
+        return cy.get("#sorting")
+    }
+ 
+    // In IdentifyNewBikes.js
+ 
+    verifyUpcomingCarsSortedByPriceAsc() {
+        this.getDropdown().select("price-asc");
+        this.getUpcomingElements().then(($elements) => {
+            const prices = [];
+            $elements.each((index, el) => {
+                const price = this.extractPriceFromElement(Cypress.$(el));
+                prices.push(price);
+            });
+            const sortedPriceArray = [...prices].sort((a, b) => a - b);
+            expect(prices).to.deep.equal(sortedPriceArray);
+            expect(prices[0]).to.equal(sortedPriceArray[0]);
+        });
+    }
+ 
     
     getURL() {
         return cy.url()
