@@ -1,53 +1,33 @@
 import IdentifyNewBikes from '../support/pageobjects/IdentifyNewBikes';
-
+ 
 describe("Identify New Bikes", () => {
+  let formdata;
   beforeEach(() => {
     IdentifyNewBikes.visitHomePage();
     Cypress.on('uncaught:exception', (err, runnable) => {
       return false;
     });
   });
-
-  it("should display upcoming Honda bikes under ₹4 lakh", () => {
+it("To verify that homepage loads correctly", () => {
+    IdentifyNewBikes.getURL().should('eq', 'https://www.zigwheels.com/')
+    IdentifyNewBikes.getBanner().should("be.visible")
+    cy.scrollTo("bottom")
     cy.wait(2000)
+ 
+  })
+
+    it("should display upcoming Honda bikes under ₹4 lakh", () => {
     IdentifyNewBikes.clickUpcomingBikesTab();
-    IdentifyNewBikes.getUpcomingBikeElements().each(($el) => {
-      const price = parseFloat($el.attr("data-price"));
-      if (price < 400000) {
-        const bikeName = $el.find(".txt-ulne").text().trim();
-        const launchDate = $el.find(".clr-try").text().trim();
-        cy.log("Bike Name : " + bikeName);
-        cy.log("Price : " + price);
-        cy.log(launchDate);
-        cy.wait(3000)
-      }
-    });
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/upcoming-bikes")
+ 
+    IdentifyNewBikes.filterHondaBikes().scrollIntoView().click()
+    IdentifyNewBikes.getURL().should("eq", "https://www.zigwheels.com/upcoming-honda-bikes")
+ 
+    IdentifyNewBikes.filterAndLogHondaBikesUnder4Lakh();
+ 
+    cy.go(-2) // back to the home page
+    IdentifyNewBikes.getURL().should("eq", 'https://www.zigwheels.com/')
   });
-
-  it("should extract popular used car models in Chennai", () => {
-    IdentifyNewBikes.visitHomePage()
-    IdentifyNewBikes.clickUsedCarsChennai();
-    cy.wait(1000)
-    let models = [];
-    IdentifyNewBikes.getPopularUsedCarModels().each(($el) => {
-      models.push($el.text().trim());
-    }).then(() => {
-      models.forEach((model) => {
-        cy.log(model);
-      });
-    });
-  });
-
-  it("should simulate Google login and capture error message", () => {
-    IdentifyNewBikes.openLoginModal();
-    IdentifyNewBikes.clickGoogleSignIn();
-
-  });
-});
-
-
-
-
-
-
-
+ 
+  
+})

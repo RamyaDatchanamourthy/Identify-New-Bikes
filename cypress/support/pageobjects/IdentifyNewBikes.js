@@ -4,34 +4,49 @@ class IdentifyNewBikes {
     }
 
     clickUpcomingBikesTab() {
-        cy.wait(5000)
-        cy.get(".upcoming-bike-tab").click();
-        cy.wait(1000)
-        cy.get("[title='All Upcoming Bikes']").click();
-        cy.wait(1000)
-        cy.get("[title='upcoming Honda bikes']").click();
-        cy.wait(1000)
+        cy.get(".upcoming-bike-tab").scrollIntoView().should("be.visible").click();
+        cy.get("[title='All Upcoming Bikes']").click();   // selecting all upcoming ikes
+ 
     }
 
-    getUpcomingBikeElements() {
-        return cy.get("#modelList").find("li");
+    filterHondaBikes() {
+        return cy.get("[title='upcoming Honda bikes']")
     }
 
-    clickUsedCarsChennai() {
-        cy.get("#usedCars").find(".Chennai").click({ force: true });
+    extractPriceFromElement($el) {
+        const rawPrice = $el.attr("data-price");
+        return parseFloat(rawPrice);
+    }
+ 
+ 
+    logBikeDetails($el) {
+        const price = this.extractPriceFromElement($el);
+        const bikeName = $el.find(".txt-ulne").text().trim();
+        const launchDate = $el.find(".clr-try").text().trim();
+ 
+        cy.log(`Bike Name - ${bikeName}`);
+        cy.log(`Price - ₹${price}`);
+        cy.log(`${launchDate}`);
     }
 
-    getPopularUsedCarModels() {
-        return cy.get(".popularModels").find("li");
+    filterAndLogHondaBikesUnder4Lakh() {
+        this.getUpcomingElements().each(($el) => {
+            const price = this.extractPriceFromElement($el)
+            if (price < 400000) {
+                this.logBikeDetails($el)
+            }
+        });
     }
-
-    openLoginModal() {
-        cy.get("#forum_login_cover_image_sm").click({ force: true });
+    getUpcomingElements() {
+        return cy.get("#modelList").find("li");    // selecting all list elements
     }
-
-    clickGoogleSignIn() {
-        cy.get(".googleSignIn").click();
+    
+    getURL() {
+        return cy.url()
+    }
+ 
+    getBanner() {
+        return cy.get("#homeslider")
     }
 }
-
 export default new IdentifyNewBikes();
