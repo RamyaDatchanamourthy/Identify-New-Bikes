@@ -113,6 +113,10 @@ class IdentifyNewBikes {
         return cy.get(".error").invoke("text")
     }
 
+    getOTPButton() {
+        return cy.get(".button.submitButton")
+    }
+
 
 }
 export default new IdentifyNewBikes();
