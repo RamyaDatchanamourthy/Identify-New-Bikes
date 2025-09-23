@@ -5,7 +5,7 @@ class IdentifyNewBikes {
 
     clickUpcomingBikesTab() {
         cy.get(".upcoming-bike-tab").scrollIntoView().should("be.visible").click();
-        cy.get("[title='All Upcoming Bikes']").click();   // selecting all upcoming ikes
+        cy.get("[title='All Upcoming Bikes']").click();   
 
     }
 
@@ -69,7 +69,6 @@ class IdentifyNewBikes {
         return cy.get("#sorting")
     }
 
-    // In IdentifyNewBikes.js
 
     verifyUpcomingCarsSortedByPriceAsc() {
         this.getDropdown().select("price-asc");

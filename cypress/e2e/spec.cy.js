@@ -30,7 +30,7 @@ describe("Identify New Bikes", () => {
 
     IdentifyNewBikes.filterAndLogHondaBikesUnder4Lakh();
 
-    cy.go(-2) // back to the home page
+    cy.go(-2)
     IdentifyNewBikes.getURL().should("eq", 'https://www.zigwheels.com/')
   });
 
