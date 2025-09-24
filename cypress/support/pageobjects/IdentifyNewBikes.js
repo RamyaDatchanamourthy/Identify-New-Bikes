@@ -38,7 +38,7 @@ class IdentifyNewBikes {
         });
     }
     getUpcomingElements() {
-        return cy.get("#modelList").find("li");    // selecting all list elements
+        return cy.get("#modelList").find("li");    
     }
 
     getUsedCarsChennai() {
@@ -93,7 +93,7 @@ class IdentifyNewBikes {
         return cy.get("#homeslider")
     }
 
-    openLoginModal() {
+    openLoginModel() {
         cy.get("#forum_login_cover_image_sm").click({ force: true });
     }
 

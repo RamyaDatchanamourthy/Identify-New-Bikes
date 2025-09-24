@@ -48,8 +48,8 @@ describe("Identify New Bikes", () => {
 
   })
 
-  it("should simulate Google login and capture error message", () => {
-    IdentifyNewBikes.openLoginModal();
+  it("Should simulate Google login and capture error message", () => {
+    IdentifyNewBikes.openLoginModel();
     IdentifyNewBikes.clickGoogleSignIn();
 
   });
